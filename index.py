@@ -5,3 +5,4 @@ import matplotlib.pyplot as plt
 import seaborn as snb
 
 st.write("Hello World")
+st.write("Teri Ma ka chuu")
