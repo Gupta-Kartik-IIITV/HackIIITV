@@ -3,48 +3,46 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as snb
-import utils as ut
+import time
+import pathlib
+from PIL import Image
+import base64
 
-st.set_page_config(page_title="Beautiful Free Math", layout="wide")
+def load_css(file):
+    with open(file) as f:
+        st.html(f"<style>{f.read()}</style>")
 
-# Create a container with custom styling
+csspath = pathlib.Path("style.css")
+load_css(csspath)
+
+# Convert the image to Base64
+def get_base64_image(image_path):
+    with open(image_path, "rb") as img_file:
+        b64_string = base64.b64encode(img_file.read()).decode("utf-8")
+    return f"data:image/png;base64,{b64_string}"
+
+
+logo_base64 = get_base64_image("logo (1).png") 
+
+
 st.markdown(
-    """
-    <style>
-    .title-container {
-        background-color: #2E73A6;
-        padding: 50px 0;
-        text-align: center;
-        color: white;
-    }
-    .title-container h1 {
-        font-size: 50px;
-        font-weight: bold;
-        margin: 0;
-    }
-    .title-container p {
-        font-size: 20px;
-        margin-top: 10px;
-    }
-    .logo {
-        display: block;
-        margin: 20px auto;
-        width: 150px;
-    }
-    </style>
+    f"""
+    <div class="title-container">
+        <img src="{logo_base64}" class="logo-pop" alt="WaveLAB Logo">
+        <br>
+        <br>
+        <p>A Personalised and Customizable Tool-kit exclusively for IIIT Vadodara Students</p>
+    </div>
     """,
     unsafe_allow_html=True
 )
 
-# Display logo and title
+
+# Display buttons horizontally with proper centering
 st.markdown("""
-<div class="title-container">
-    <img src="Logo.jpeg" class="logo">
-    <h1>Beautiful Free Math</h1>
-    <p>A Personalised and Customizable Toolkit exclusively for IIIT Vadodara Students</p>
+<div class = "button-container">
+    <a href="#" class = "button-container-probability">Probability</a>
+    <a href="#" class = "button-container-statistics">Statistics</a>
+    <a href="#" class = "button-container-physics">Physics</a>
 </div>
 """, unsafe_allow_html=True)
-
-# Additional app content
-st.button("Open Graphing Calculator")
-st.markdown("### Explore all of our math tools!")
