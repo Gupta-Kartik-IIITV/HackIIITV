@@ -2,6 +2,7 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 import seaborn as snb
+import matplotlib.pyplot as plt
 import time
 import pathlib
 from PIL import Image
